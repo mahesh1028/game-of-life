@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  -  name: installing nginx
+     apt:
+       name: apache
+       state: present
+       update_cache: yes
+  - name: service restart
+    service:
+      name: nginx
+      enabled: yes
+      state: restarted
+  - name: download file from url # This module downloads the file from url into node
+    copy:
+      src: /var/lib/jenkins/gol/
+      dest: /var/www/html/gameoflife.war
