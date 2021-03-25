@@ -2,14 +2,14 @@
 - hosts: web
   become: yes
   tasks:
-  -  name: installing nginx
+  -  name: installing apache
      apt:
-       name: apache
+       name: apache2
        state: present
        update_cache: yes
   - name: service restart
     service:
-      name: nginx
+      name: apache2
       enabled: yes
       state: restarted
   - name: download file from url # This module downloads the file from url into node
